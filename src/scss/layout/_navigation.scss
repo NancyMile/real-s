@@ -10,10 +10,14 @@
 }
 
 .navigation {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .3sec ease-in-out, opacity 0.5s linear;
     @include tablet {
         display: flex;
         align-items: center;
+        opacity: 1;
+        visibility: visible;
     }
     
     a {
@@ -43,9 +47,6 @@
 }
 
 .display-menu {
-    display: flex;
-    flex-direction: column;
-    @include tablet{
-        flex-direction: row;
-    }
+    visibility: visible;
+    opacity: 1;
 }
