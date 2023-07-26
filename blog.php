@@ -85,4 +85,4 @@
         </div>
       </article>
     </main>
-    <?php include './includes/templates/footer.php'; ?>
+    <?php addTemplate('footer'); ?>

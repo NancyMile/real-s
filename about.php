@@ -70,4 +70,4 @@
         <!--end icon-->
       </div>
     </section>
-    <?php include './includes/templates/footer.php'; ?>
+    <?php addTemplate('footer'); ?>

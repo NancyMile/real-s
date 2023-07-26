@@ -27,4 +27,4 @@
     <main>
       <h1>Pagina</h1>
     </main>
-    <?php include './includes/templates/footer.php'; ?>
+    <?php addTemplate('footer'); ?>

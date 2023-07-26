@@ -272,4 +272,4 @@
         </div>
         <!--end container-adverts-->
     </main>
-    <?php include './includes/templates/footer.php'; ?>
+    <?php addTemplate('footer'); ?>

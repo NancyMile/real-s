@@ -51,4 +51,4 @@
         <input type="submit" value="Send" class="btn-green">
        </form>
     </main>
-    <?php include './includes/templates/footer.php'; ?>
+    <?php addTemplate('footer'); ?>

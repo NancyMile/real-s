@@ -54,4 +54,4 @@
           </p>
       </div>
     </main>
-    <?php include './includes/templates/footer.php'; ?>
+    <?php addTemplate('footer'); ?>
