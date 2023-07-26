@@ -5,6 +5,14 @@
   //error messages
   $errors = [];
 
+  $title = '';
+  $price = '';
+  $description = '';
+  $rooms = '';
+  $bathrooms = '';
+  $garages = '';
+  $sellerId = '';
+
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
     // echo"<pre>";
@@ -74,22 +82,22 @@
       <fieldset>
         <legend>Genral Info</legend>
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" placeholder="title">
+        <input type="text" name="title" id="title" placeholder="title" value="<?php echo $title; ?>">
         <label for="price">Price</label>
-        <input type="number" name="price" id="price" placeholder="price">
+        <input type="number" name="price" id="price" placeholder="price" value="<?php echo $price; ?>">
         <label for="title">Image</label>
         <input type="file" id="image" accept="image/jpeg,image/png">
         <label for="description">Description</label>
-        <textarea id="description" name="description"></textarea>
+        <textarea id="description" name="description"><?php echo $description; ?></textarea>
       </fieldset>
       <fieldset>
         <legend>Property Info</legend>
         <label for="rooms">Rooms</label>
-        <input type="number" id="rooms" name="rooms" min="1" max="9" placeholder="Eg: 3">
+        <input type="number" id="rooms" name="rooms" min="1" max="9" placeholder="Eg: 3" value="<?php echo $rooms; ?>">
         <label for="bathrooms">Bathrooms</label>
-        <input type="number" id="bathrooms" name="bathrooms" min="1" max="4" placeholder="Eg: 3">
+        <input type="number" id="bathrooms" name="bathrooms" min="1" max="4" placeholder="Eg: 3" value="<?php echo $bathrooms; ?>">
         <label for="garages">Garages</label>
-        <input type="number" id="garages" name="garages" min="1" max="3" placeholder="Eg: 3">
+        <input type="number" id="garages" name="garages" min="1" max="3" placeholder="Eg: 3" value="<?php echo $garages; ?>">
       </fieldset>
       <fieldset>
         <legend>Seller Info</legend>
