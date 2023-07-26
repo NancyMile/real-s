@@ -1,4 +1,5 @@
 <?php
+$home = true;
   include './includes/templates/header.php';
 ?>
     <main>

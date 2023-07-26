@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="build/css/app.css" />
   </head>
   <body>
-    <header class="header home">
+    <header class="header <?php echo isset($home) ? 'home': ''; ?>">
       <div class="contenedor header-content">
         <div class="bar">
           <a href="/">
@@ -31,6 +31,6 @@
             </nav>
           </div>
         </div>
-        <h1>Sales</h1>
+        <?php echo isset($home)? '<h1>Sales</h1>': ''; ?>
       </div>
     </header>
