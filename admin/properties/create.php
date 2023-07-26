@@ -23,13 +23,13 @@
     //   var_dump($_POST);
     // echo"</pre>";
 
-    $title = $_POST['title'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $rooms = $_POST['rooms'];
-    $bathrooms = $_POST['bathrooms'];
-    $garages = $_POST['garages'];
-    $sellerId = $_POST['sellerId'];
+    $title = mysqli_real_escape_string($db,$_POST['title']);
+    $price = mysqli_real_escape_string($db,$_POST['price']);
+    $description = mysqli_real_escape_string($db,$_POST['description']);
+    $rooms = mysqli_real_escape_string($db,$_POST['rooms']);
+    $bathrooms = mysqli_real_escape_string($db,$_POST['bathrooms']);
+    $garages = mysqli_real_escape_string($db,$_POST['garages']);
+    $sellerId = mysqli_real_escape_string($db,$_POST['sellerId']);
     $date = date('Y/m/d');
 
     if(!$title){
