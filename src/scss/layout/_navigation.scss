@@ -1,3 +1,24 @@
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet{
+        align-items: flex-end;
+    }
+    .dark-mode-button{
+        width: 3rem;
+        margin-bottom: 2rem;
+        margin-top: 3rem;
+        filter: invert(100%);
+        &:hover{
+            cursor: pointer;
+        }
+        @include tablet{
+            margin-top: 0;
+        }
+    }
+}
+
 .bar {
     display: flex;
     flex-direction: column;
@@ -6,6 +27,7 @@
     @include tablet{
         flex-direction: row;
         justify-content: space-between;
+        align-items: flex-end;
     }
 }
 
