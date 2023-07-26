@@ -16,9 +16,13 @@
         .price{
             color: $verde;
         }
-        
+
         .icon{
             filter: invert(100%);
         }
+    }
+
+    .text-about{
+        color: $blanco;
     }
 }
