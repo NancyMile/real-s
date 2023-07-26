@@ -2,6 +2,10 @@
   require '../../includes/config/database.php';
   $db = connectionDD();
 
+  //error messages
+  $errors = [];
+
+  //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
     // echo"<pre>";
     //   var_dump($_POST);
@@ -15,13 +19,43 @@
     $garages = $_POST['garages'];
     $sellerId = $_POST['sellerId'];
 
-    //save record on db
-    $query = "INSERT INTO properties (title,price,description,rooms,bathrooms,garages,seller_id)
+    if(!$title){
+      $errors[] = 'Please enter title';
+    }
+    if(!$price){
+      $errors[] = 'Please enter price';
+    }
+    if(strlen($description) < 50){
+      $errors[] = 'Please enter description min 50 characters';
+    }
+    if(!$rooms){
+      $errors[] = 'Please enter rooms';
+    }
+    if(!$bathrooms){
+      $errors[] = 'Please enter bathrooms';
+    }
+    if(!$garages){
+      $errors[] = 'Please enter garages';
+    }
+    if(!$sellerId){
+      $errors[] = 'Please select the seller';
+    }
+
+    // echo"<pre>";
+    //   var_dump($errors);
+    // echo"</pre>";
+    //exit;
+
+    //check that $errors array is empty
+    if(empty($errors)){
+      //save record on db
+      $query = "INSERT INTO properties (title,price,description,rooms,bathrooms,garages,seller_id)
       VALUES('$title',$price,'$description','$rooms','$bathrooms','$garages','$sellerId')";
-    //echo $query;
-    $result = mysqli_query($db,$query);
-    if($result){
-      echo "Saved!!";
+      //echo $query;
+      $result = mysqli_query($db,$query);
+      if($result){
+        echo "Saved!!";
+      }
     }
   }
 
@@ -31,6 +65,11 @@
 <main class="contenedor section">
     <h1>Create</h1>
     <a href="/admin" class="btn btn-green">Admin</a>
+    <?php foreach($errors as $error): ?>
+      <div class="alert error">
+        <?php echo $error; ?>
+      </div>
+    <?php endforeach; ?>
     <form class="formulario" method="POST" action="/admin/properties/create.php">
       <fieldset>
         <legend>Genral Info</legend>
