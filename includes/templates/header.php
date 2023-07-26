@@ -1,8 +1,18 @@
 <?php
-  include './includes/templates/header.php';
+  declare(strict_types=1);
+  ini_set('display_errors','On');
 ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real State</title>
+    <link rel="stylesheet" href="build/css/app.css" />
+  </head>
   <body>
-    <header class="header">
+    <header class="header home">
       <div class="contenedor header-content">
         <div class="bar">
           <a href="/">
@@ -21,22 +31,6 @@
             </nav>
           </div>
         </div>
+        <h1>Sales</h1>
       </div>
     </header>
-    <main>
-      <h1>Pagina</h1>
-    </main>
-    <footer class="footer section">
-      <div class="contenedor contenedor-footer">
-        <nav class="navigation">
-          <a href="about.php">About</a>
-          <a href="advert.php">Adverts</a>
-          <a href="blog.php">Blog</a>
-          <a href="contact.php">Contact Us</a>
-        </nav>
-      </div>
-      <p class="copyright">All Rights reserved.</p>
-    </footer>
-    <script src="build/js/bundle.min.js"></script>
-  </body>
-</html>

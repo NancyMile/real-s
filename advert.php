@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real State</title>
-    <link rel="stylesheet" href="build/css/app.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="contenedor header-content">
-        <div class="bar">
-          <a href="/">
-            <img src="build/img/logo.svg" alt="logo" />
-          </a>
-          <div class="menu-mobile">
-            <img src="build/img/barras.svg" alt="menu">
-          </div>
-          <div class="right">
-            <img class="dark-mode-button" src="build/img/dark-mode.svg">
-            <nav class="navigation">
-              <a href="about.html">About</a>
-              <a href="advert.html">Adverts</a>
-              <a href="blog.html">Blog</a>
-              <a href="contact.html">Contact Us</a>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
+<?php
+  include './includes/templates/header.php';
+?>
     <main>
       <h1>Adverts</h1>
         <div class="container-adverts">
@@ -71,7 +43,7 @@
                   <p>4</p>
                 </li>
               </ul>
-              <a class="btn btn-yellow-block" href="advert.html">Property</a>
+              <a class="btn btn-yellow-block" href="advert.php">Property</a>
             </div>
             <!-- content advert-->
           </div>
@@ -115,7 +87,7 @@
                   <p>4</p>
                 </li>
               </ul>
-              <a class="btn btn-yellow-block" href="advert.html">Property</a>
+              <a class="btn btn-yellow-block" href="advert.php">Property</a>
             </div>
             <!-- content advert-->
           </div>
@@ -159,7 +131,7 @@
                   <p>4</p>
                 </li>
               </ul>
-              <a class="btn btn-yellow-block" href="advert.html">Property</a>
+              <a class="btn btn-yellow-block" href="advert.php">Property</a>
             </div>
             <!-- content advert-->
           </div>
@@ -203,7 +175,7 @@
                   <p>4</p>
                 </li>
               </ul>
-              <a class="btn btn-yellow-block" href="advert.html">Property</a>
+              <a class="btn btn-yellow-block" href="advert.php">Property</a>
             </div>
             <!-- content advert-->
           </div>
@@ -247,7 +219,7 @@
                   <p>4</p>
                 </li>
               </ul>
-              <a class="btn btn-yellow-block" href="advert.html">Property</a>
+              <a class="btn btn-yellow-block" href="advert.php">Property</a>
             </div>
             <!-- content advert-->
           </div>
@@ -291,7 +263,7 @@
                   <p>4</p>
                 </li>
               </ul>
-              <a class="btn btn-yellow-block" href="advert.html">Property</a>
+              <a class="btn btn-yellow-block" href="advert.php">Property</a>
             </div>
             <!-- content advert-->
           </div>
@@ -302,10 +274,10 @@
     <footer class="footer section">
       <div class="contenedor contenedor-footer">
         <nav class="navigation">
-          <a href="about.html">About</a>
-          <a href="advert.html">Adverts</a>
-          <a href="blog.html">Blog</a>
-          <a href="contact.html">Contact Us</a>
+          <a href="about.php">About</a>
+          <a href="advert.php">Adverts</a>
+          <a href="blog.php">Blog</a>
+          <a href="contact.php">Contact Us</a>
         </nav>
       </div>
       <p class="copyright">All Rights reserved.</p>

@@ -1,35 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real State</title>
-    <link rel="stylesheet" href="build/css/app.css" />
-  </head>
-  <body>
-    <header class="header home">
-      <div class="contenedor header-content">
-        <div class="bar">
-          <a href="/">
-            <img src="build/img/logo.svg" alt="logo" />
-          </a>
-          <div class="menu-mobile">
-            <img src="build/img/barras.svg" alt="menu">
-          </div>
-          <div class="right">
-            <img class="dark-mode-button" src="build/img/dark-mode.svg">
-            <nav class="navigation">
-              <a href="about.html">About</a>
-              <a href="advert.html">Adverts</a>
-              <a href="blog.html">Blog</a>
-              <a href="contact.html">Contact Us</a>
-            </nav>
-          </div>
-        </div>
-        <h1>Sales</h1>
-      </div>
-    </header>
+<?php
+  include './includes/templates/header.php';
+?>
     <main>
       <h1>About Us</h1>
       <div class="icons-about">
@@ -110,7 +81,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a class="btn btn-yellow-block" href="advert.html">Property</a>
+            <a class="btn btn-yellow-block" href="advert.php">Property</a>
           </div>
           <!-- content advert-->
         </div>
@@ -154,7 +125,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a class="btn btn-yellow-block" href="advert.html">Property</a>
+            <a class="btn btn-yellow-block" href="advert.php">Property</a>
           </div>
           <!-- content advert-->
         </div>
@@ -197,7 +168,7 @@
                 <p>4</p>
               </li>
             </ul>
-            <a class="btn btn-yellow-block" href="advert.html">Property</a>
+            <a class="btn btn-yellow-block" href="advert.php">Property</a>
           </div>
           <!-- content advert-->
         </div>
@@ -205,13 +176,13 @@
       </div>
       <!--end container-adverts-->
       <div class="display_all align-right">
-        <a class="btn-green" href="advert.html">More Properties</a>
+        <a class="btn-green" href="advert.php">More Properties</a>
       </div>
     </section>
     <section class="image-contact">
       <h2>Find your next home</h2>
       <p>Please fill the form, We will get back to you shortly!</p>
-      <a class="btn-yellow" href="contact.html">Cantact Us</a>
+      <a class="btn-yellow" href="contact.php">Cantact Us</a>
     </section>
     <div class="contenedor section low-section">
       <section class="blog">
@@ -225,7 +196,7 @@
             </picture>
           </div>
           <div class="text-entry">
-            <a href="entry.html">
+            <a href="entry.php">
               <h4>Balcony, stunning views.</h4>
               <p class="info-meta">Published: <span>02/07/2023</span> by: <span>Admin</span></p>
               <p>
@@ -245,7 +216,7 @@
             </picture>
           </div>
           <div class="text-entry">
-            <a href="entry.html">
+            <a href="entry.php">
               <h4>Swimming Pool on terrace.</h4>
               <p class="info-meta">Published: <span>02/07/2023</span> by: <span>Admin</span></p>
               <p>
@@ -273,10 +244,10 @@
     <footer class="footer section">
       <div class="contenedor contenedor-footer">
         <nav class="navigation">
-          <a href="about.html">About</a>
-          <a href="advert.html">Adverts</a>
-          <a href="blog.html">Blog</a>
-          <a href="contact.html">Contact Us</a>
+          <a href="about.php">About</a>
+          <a href="advert.php">Adverts</a>
+          <a href="blog.php">Blog</a>
+          <a href="contact.php">Contact Us</a>
         </nav>
       </div>
       <p class="copyright">All Rights reserved.</p>

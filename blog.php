@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real State</title>
-    <link rel="stylesheet" href="build/css/app.css" />
-  </head>
+<?php
+  include './includes/templates/header.php';
+?>
   <body>
     <header class="header">
       <div class="contenedor header-content">
@@ -20,10 +14,10 @@
           <div class="right">
             <img class="dark-mode-button" src="build/img/dark-mode.svg">
             <nav class="navigation">
-              <a href="about.html">About</a>
-              <a href="advert.html">Adverts</a>
-              <a href="blog.html">Blog</a>
-              <a href="contact.html">Contact Us</a>
+              <a href="about.php">About</a>
+              <a href="advert.php">Adverts</a>
+              <a href="blog.php">Blog</a>
+              <a href="contact.php">Contact Us</a>
             </nav>
           </div>
         </div>
@@ -40,7 +34,7 @@
           </picture>
         </div>
         <div class="text-entry">
-          <a href="entry.html">
+          <a href="entry.php">
             <h4>Balcony, stunning views.</h4>
             <p>Published: <span>02/07/2023</span> by: <span>Admin</span></p>
             <p>
@@ -60,7 +54,7 @@
           </picture>
         </div>
         <div class="text-entry">
-          <a href="entry.html">
+          <a href="entry.php">
             <h4>Swimming Pool on terrace.</h4>
             <p>Published: <span>02/07/2023</span> by: <span>Admin</span></p>
             <p>
@@ -80,7 +74,7 @@
           </picture>
         </div>
         <div class="text-entry">
-          <a href="entry.html">
+          <a href="entry.php">
             <h4>Balcony, stunning views.</h4>
             <p>Published: <span>02/07/2023</span> by: <span>Admin</span></p>
             <p>
@@ -100,7 +94,7 @@
           </picture>
         </div>
         <div class="text-entry">
-          <a href="entry.html">
+          <a href="entry.php">
             <h4>Swimming Pool on terrace.</h4>
             <p>Published: <span>02/07/2023</span> by: <span>Admin</span></p>
             <p>
@@ -115,10 +109,10 @@
     <footer class="footer section">
       <div class="contenedor contenedor-footer">
         <nav class="navigation">
-          <a href="about.html">About</a>
-          <a href="advert.html">Adverts</a>
-          <a href="blog.html">Blog</a>
-          <a href="contact.html">Contact Us</a>
+          <a href="about.php">About</a>
+          <a href="advert.php">Adverts</a>
+          <a href="blog.php">Blog</a>
+          <a href="contact.php">Contact Us</a>
         </nav>
       </div>
       <p class="copyright">All Rights reserved.</p>
