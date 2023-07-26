@@ -1,4 +1,7 @@
 <?php
+  require '../../includes/config/database.php';
+  $db = connectionDD();
+
   require '../../includes/functions.php';
   addTemplate('header');
 ?>
