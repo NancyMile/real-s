@@ -9,20 +9,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Real State</title>
-    <link rel="stylesheet" href="build/css/app.css" />
+    <link rel="stylesheet" href="/build/css/app.css" />
   </head>
   <body>
     <header class="header <?php echo $home ? 'home': ''; ?>">
       <div class="contenedor header-content">
         <div class="bar">
           <a href="/">
-            <img src="build/img/logo.svg" alt="logo" />
+            <img src="/build/img/logo.svg" alt="logo" />
           </a>
           <div class="menu-mobile">
-            <img src="build/img/barras.svg" alt="menu">
+            <img src="/build/img/barras.svg" alt="menu">
           </div>
           <div class="right">
-            <img class="dark-mode-button" src="build/img/dark-mode.svg">
+            <img class="dark-mode-button" src="/build/img/dark-mode.svg">
             <nav class="navigation">
               <a href="about.php">About</a>
               <a href="advert.php">Adverts</a>
