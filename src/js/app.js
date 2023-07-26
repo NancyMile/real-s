@@ -18,6 +18,22 @@ function responsiveNavigation() {
 }
 
 function darkMode() {
+    const prefersDarkMode = window.matchMedia('prefers-color-scheme:dark');
+    //console.log(prefersDarkMode.matches);
+    if (prefersDarkMode.matches) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+    prefersDarkMode.addEventListener('change', function () {
+        if (prefersDarkMode.matches) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+
     const buttonDarKMode = document.querySelector('.dark-mode-button');
     buttonDarKMode.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
