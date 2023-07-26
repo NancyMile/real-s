@@ -67,7 +67,8 @@
       //echo $query;
       $result = mysqli_query($db,$query);
       if($result){
-        echo "Saved!!";
+      // redirect to admin
+      header('Location: /admin');
       }
     }
   }
@@ -83,6 +84,12 @@
         <?php echo $error; ?>
       </div>
     <?php endforeach; ?>
+    <?php if(isset($message)): ?>
+      <div class="alert message">
+        <?php echo $message; ?>
+      </div>
+    <?php endif; ?>
+
     <form class="formulario" method="POST" action="/admin/properties/create.php">
       <fieldset>
         <legend>Genral Info</legend>
