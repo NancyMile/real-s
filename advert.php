@@ -1,5 +1,6 @@
 <?php
-  include './includes/templates/header.php';
+  require 'includes/functions.php';
+  addTemplate('header');
 ?>
     <main>
       <h1>Adverts</h1>

@@ -1,6 +1,6 @@
 <?php
-$home = true;
-  include './includes/templates/header.php';
+  require 'includes/functions.php';
+  addTemplate('header', $home = true);
 ?>
     <main>
       <h1>About Us</h1>

@@ -1,5 +1,6 @@
 <?php
-  include './includes/templates/header.php';
+  require 'includes/functions.php';
+  addTemplate('header');
 ?>
     <main class="contenedor section">
       <h1>Contact Us</h1>
