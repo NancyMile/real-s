@@ -34,7 +34,8 @@
 .navigation {
     visibility: hidden;
     opacity: 0;
-    transition: visibility .3sec ease-in-out, opacity 0.5s linear;
+    height: 0;
+    transition: visibility .3sec ease-in-out, opacity 0.5s linear, height .5s linear;
     @include tablet {
         display: flex;
         align-items: center;
@@ -71,4 +72,5 @@
 .display-menu {
     visibility: visible;
     opacity: 1;
+    height: auto;
 }
