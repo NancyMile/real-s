@@ -7,7 +7,7 @@
           <a href="contact.php">Contact Us</a>
         </nav>
       </div>
-      <p class="copyright">All Rights reserved.</p>
+      <p class="copyright">All Rights reserved. <?php echo $date = date('Y'); ?> &copy</p>
     </footer>
     <script src="build/js/bundle.min.js"></script>
   </body>
