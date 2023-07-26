@@ -2,6 +2,10 @@
   require '../../includes/config/database.php';
   $db = connectionDD();
 
+  //get sellers
+  $query = "SELECT * FROM sellers";
+  $result = mysqli_query($db,$query);
+
   //error messages
   $errors = [];
 
@@ -104,8 +108,9 @@
         <label for="name">Name</label>
         <select name="sellerId">
           <option value="" selected disabled>-- Select --</option>
-          <option value="1">Nancy</option>
-          <option value="2">Maria</option>
+            <?php while($seller = mysqli_fetch_assoc($result)) : ?>
+              <option <?php echo $seller['id'] === $sellerId ? 'selected': ''; ?> value="<?php echo $seller['id']?>"><?php echo $seller['name'].' '.$seller['lastname'] ?></option>
+            <?php endwhile; ?>
         </select>
       </fieldset>
       <input type="submit" value="Save" class="btn btn-green">
