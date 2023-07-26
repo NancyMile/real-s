@@ -30,6 +30,7 @@
     $bathrooms = $_POST['bathrooms'];
     $garages = $_POST['garages'];
     $sellerId = $_POST['sellerId'];
+    $date = date('Y/m/d');
 
     if(!$title){
       $errors[] = 'Please enter title';
@@ -61,8 +62,8 @@
     //check that $errors array is empty
     if(empty($errors)){
       //save record on db
-      $query = "INSERT INTO properties (title,price,description,rooms,bathrooms,garages,seller_id)
-      VALUES('$title',$price,'$description','$rooms','$bathrooms','$garages','$sellerId')";
+      $query = "INSERT INTO properties (title,price,description,rooms,bathrooms,garages,seller_id,created_at)
+      VALUES('$title',$price,'$description','$rooms','$bathrooms','$garages','$sellerId','$date')";
       //echo $query;
       $result = mysqli_query($db,$query);
       if($result){
