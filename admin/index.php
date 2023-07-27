@@ -10,6 +10,27 @@
   //display conditional message
   $result = $_GET['result'] ?? '';
 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+  $id = $_POST['id'];
+  $id = filter_var($id,FILTER_VALIDATE_INT);
+
+  if($id){
+    //remove the file
+    $query = "SELECT image FROM properties WHERE id = $id";
+    $result = mysqli_query($db,$query);
+    $property = mysqli_fetch_assoc($result);
+
+    unlink('../images/'.$property['image']);
+
+    //remove  property
+    $query = "DELETE FROM properties WHERE id = $id";
+    $result = mysqli_query($db,$query);
+
+    if($result){
+      header('Location: /admin?result=3');
+    }
+  }
+}
   //includes template
   require '../includes/functions.php';
   addTemplate('header');
@@ -20,6 +41,8 @@
       <p class="alert success">Add Created!</p>
     <?php elseif(intval($result) === 2): ?>
     <p class="alert success">Add Updated!</p>
+    <?php elseif(intval($result) === 3): ?>
+    <p class="alert success">Add Deleted!</p>
     <?php endif; ?>
     <a href="/admin/properties/create.php" class="btn btn-green">Create</a>
 
@@ -43,7 +66,10 @@
           <td>$ <?php echo $propiety['price'];?></td>
           <td>
             <a href="/admin/properties/update.php?id=<?php echo $propiety['id']; ?>" class="btn-yellow-block">Update</a>
-            <a href="#" class="btn-red-block">Delete</a>
+            <form method="POST" class="w-100">
+              <input type="hidden" name="id" value="<?php echo $propiety['id']; ?>">
+              <input type="submit" class="btn btn-red-block" value ="Delete">
+            </form>
           </td>
         </tr>
         <?php endwhile; ?>
