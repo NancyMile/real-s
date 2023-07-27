@@ -1,4 +1,11 @@
 <?php
+require '../../includes/functions.php';
+$auth = authenticated();
+if(!$auth){
+  header('location: /');
+}
+
+ // validate url valid ID
  $id =$_GET['id'];
  $id = filter_var($id,FILTER_VALIDATE_INT);
 
@@ -125,7 +132,6 @@ if(!$id){
     }
   }
 
-  require '../../includes/functions.php';
   addTemplate('header');
 ?>
 <main class="contenedor section">

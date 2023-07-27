@@ -21,7 +21,7 @@
         if(empty($errors)){
             //check if the user exist
             $query = "select * from users WHERE email = '$email'";
-            var_dump($query);
+            //var_dump($query);
             $result = mysqli_query($db,$query);
             if($result->num_rows){
                 // check that the password is correct
@@ -32,6 +32,15 @@
 
                 if($auth){
                     //authenticated
+                    session_start();
+
+                    //set the array of session
+                    $_SESSION['user'] = $user['email'];
+                    $_SESSION['login'] = true;
+
+                    // echo "<pre>";
+                    //     var_dump($_SESSION);
+                    // echo "</pre>";
                 }else{
                     $errors[] = "Password incorrect";
                 }

@@ -1,4 +1,11 @@
 <?php
+  require '../includes/functions.php';
+  addTemplate('header');
+  $auth = authenticated();
+  if(!$auth){
+    header('location: /');
+  }
+
   //import the conection
   require '../includes/config/database.php';
   $db = connectionDB();
@@ -31,9 +38,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
   }
 }
-  //includes template
-  require '../includes/functions.php';
-  addTemplate('header');
 ?>
 <main class="contenedor section">
     <h1>Admin Page</h1>

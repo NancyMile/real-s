@@ -1,4 +1,10 @@
 <?php
+  require '../../includes/functions.php';
+  $auth = authenticated();
+  if(!$auth){
+    header('location: /');
+  }
+
   require '../../includes/config/database.php';
   $db = connectionDB();
 
@@ -105,8 +111,6 @@
       }
     }
   }
-
-  require '../../includes/functions.php';
   addTemplate('header');
 ?>
 <main class="contenedor section">
