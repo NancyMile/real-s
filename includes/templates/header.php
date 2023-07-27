@@ -1,6 +1,11 @@
 <?php
-  declare(strict_types=1);
-  ini_set('display_errors','On');
+  ini_set('display_errors','Off');
+  if(!isset($_SESSION)){
+    session_start();
+  }
+  //var_dump($_SESSION)
+  $auth = $_SESSION['login'] ?? false;
+  //var_dump($auth);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +33,11 @@
               <a href="advert.php">Adverts</a>
               <a href="blog.php">Blog</a>
               <a href="contact.php">Contact Us</a>
+              <?php if($auth): ?>
+                <a href="close-session.php">Log out</a>
+                <?php else: ?>
+                <a href="login.php">Login</a>
+              <?php endif; ?>
             </nav>
           </div>
         </div>

@@ -37,7 +37,7 @@
                     //set the array of session
                     $_SESSION['user'] = $user['email'];
                     $_SESSION['login'] = true;
-
+                    header('location: /admin');
                     // echo "<pre>";
                     //     var_dump($_SESSION);
                     // echo "</pre>";
