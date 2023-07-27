@@ -18,6 +18,8 @@
     <h1>Admin Page</h1>
     <?php if(intval($result) === 1): ?>
       <p class="alert success">Add Created!</p>
+    <?php elseif(intval($result) === 2): ?>
+    <p class="alert success">Add Updated!</p>
     <?php endif; ?>
     <a href="/admin/properties/create.php" class="btn btn-green">Create</a>
 
@@ -40,7 +42,7 @@
           <td><img src="/images/<?php echo $propiety['image'];?>" alt="image" class="image-table"></td>
           <td>$ <?php echo $propiety['price'];?></td>
           <td>
-            <a href="#" class="btn-yellow-block">Update</a>
+            <a href="/admin/properties/update.php?id=<?php echo $propiety['id']; ?>" class="btn-yellow-block">Update</a>
             <a href="#" class="btn-red-block">Delete</a>
           </td>
         </tr>
