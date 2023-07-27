@@ -1,6 +1,6 @@
 <?php
   require '../../includes/config/database.php';
-  $db = connectionDD();
+  $db = connectionDB();
 
   //get sellers
   $query = "SELECT * FROM sellers";
