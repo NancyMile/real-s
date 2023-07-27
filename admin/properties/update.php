@@ -27,7 +27,6 @@ if(!$id){
   $bathrooms = $property['bathrooms'];
   $garages = $property['garages'];
   $sellerId = $property['seller_id'];
-  $imageProperty = $property['image'];
 
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -90,21 +89,30 @@ if(!$id){
     if(empty($errors)){
       /** upload files **/
 
-      // //create folder
-      // $imagesFolder = '../../images/';
-      // //check if the folder already exists
-      // if(!is_dir($imagesFolder)){
-      //   mkdir($imagesFolder);
-      // }
-      // // generate a unique imagename
-      // $imageName = md5(uniqid(rand(),true)).".jpg";
+      //create folder
+      $imagesFolder = '../../images/';
+      //check if the folder already exists
+      if(!is_dir($imagesFolder)){
+        mkdir($imagesFolder);
+      }
 
-      // //upload the image
-      // move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
-      //exit;
+      $imageName = '';
+      //check if the image already exists
+      if($image['name']){
+        unlink($imagesFolder.$property['image']);
+
+        // generate a unique imagename
+        $imageName = md5(uniqid(rand(),true)).".jpg";
+
+        //upload the image
+        move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
+        //exit;
+      }else{
+        $imageName = $property['image'];
+      }
 
       //update record on db
-      $query = "UPDATE properties SET title = '$title', price = $price, image = '$image', description = '$description', rooms = $rooms,
+      $query = "UPDATE properties SET title = '$title', price = $price, image = '$imageName ', description = '$description', rooms = $rooms,
       bathrooms = $bathrooms, garages = $garages, seller_id = $sellerId WHERE id = $id";
       // echo $query;
       // exit;
@@ -143,7 +151,7 @@ if(!$id){
         <input type="number" name="price" id="price" placeholder="price" value="<?php echo $price; ?>">
         <label for="title">Image</label>
         <input type="file" id="image" accept="image/jpeg,image/png" name="image">
-        <img src="/images/<?php echo $imageProperty; ?>" alt="image" class="image-small">
+        <img src="/images/<?php echo $property['image'] ; ?>" alt="image" class="image-small">
         <label for="description">Description</label>
         <textarea id="description" name="description"><?php echo $description; ?></textarea>
       </fieldset>
