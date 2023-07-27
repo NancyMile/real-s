@@ -79,9 +79,24 @@
 
     //check that $errors array is empty
     if(empty($errors)){
+      /** upload files **/
+
+      //create folder
+      $imagesFolder = '../../images/';
+      //check if the folder already exists
+      if(!is_dir($imagesFolder)){
+        mkdir($imagesFolder);
+      }
+      // generate a unique imagename
+      $imageName = md5(uniqid(rand(),true)).".jpg";
+
+      //upload the image
+      move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
+      //exit;
+
       //save record on db
-      $query = "INSERT INTO properties (title,price,description,rooms,bathrooms,garages,seller_id,created_at)
-      VALUES('$title',$price,'$description','$rooms','$bathrooms','$garages','$sellerId','$date')";
+      $query = "INSERT INTO properties (title,price,image,description,rooms,bathrooms,garages,created_at,seller_id)
+      VALUES('$title','$price','$imageName','$description','$rooms','$bathrooms','$garages','$date','$sellerId')";
       //echo $query;
       $result = mysqli_query($db,$query);
       if($result){
