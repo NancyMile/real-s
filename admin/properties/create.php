@@ -23,6 +23,11 @@
     //   var_dump($_POST);
     // echo"</pre>";
 
+    // echo"<pre>";
+    //   var_dump($_FILES);
+    // echo"</pre>";
+    // exit;
+
     $title = mysqli_real_escape_string($db,$_POST['title']);
     $price = mysqli_real_escape_string($db,$_POST['price']);
     $description = mysqli_real_escape_string($db,$_POST['description']);
@@ -31,6 +36,9 @@
     $garages = mysqli_real_escape_string($db,$_POST['garages']);
     $sellerId = mysqli_real_escape_string($db,$_POST['sellerId']);
     $date = date('Y/m/d');
+    $image = $_FILES['image'];
+    // var_dump($image['name']);
+    // exit;
 
     if(!$title){
       $errors[] = 'Please enter title';
@@ -52,6 +60,16 @@
     }
     if(!$sellerId){
       $errors[] = 'Please select the seller';
+    }
+    if(!$image['name']){
+      $errors[] = "Please Upload an image";
+    }
+
+    //validate size of image (max 100 Kb)
+    $size = 1000 * 100;
+
+    if($image['size'] > $size  || $image['error']){
+      $errors[] = 'Image size must be less that 100 kb';
     }
 
     // echo"<pre>";
@@ -90,7 +108,7 @@
       </div>
     <?php endif; ?>
 
-    <form class="formulario" method="POST" action="/admin/properties/create.php">
+    <form class="formulario" method="POST" action="/admin/properties/create.php" enctype="multipart/form-data">
       <fieldset>
         <legend>Genral Info</legend>
         <label for="title">Title</label>
@@ -98,7 +116,7 @@
         <label for="price">Price</label>
         <input type="number" name="price" id="price" placeholder="price" value="<?php echo $price; ?>">
         <label for="title">Image</label>
-        <input type="file" id="image" accept="image/jpeg,image/png">
+        <input type="file" id="image" accept="image/jpeg,image/png" name="image">
         <label for="description">Description</label>
         <textarea id="description" name="description"><?php echo $description; ?></textarea>
       </fieldset>
