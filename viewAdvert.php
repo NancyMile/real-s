@@ -1,16 +1,29 @@
 <?php
+  $id = $_GET['id'];
+  $id = filter_var($id,FILTER_VALIDATE_INT);
+
+  if(!$id){
+    header('location: /');
+  }
+    require 'includes/config/database.php';
+    $db =connectionDB();
+    $query = "SELECT * FROM properties WHERE id = $id";
+    $results = mysqli_query($db,$query);
+
+    if(!$results->num_rows){
+      header('location: /');
+    }
+
+    $propery = mysqli_fetch_assoc($results);
+
   require 'includes/functions.php';
   addTemplate('header');
 ?>
     <main  class="contenedor section contenido-centrado">
-      <h1>Beach House</h1>
-      <picture>
-        <source srcset="build/img/destacada.webp" type="image/webp">
-        <source srcset="build/img/destacada.jpg" type="image/jpeg">
-        <img loading="lazy" src="build/img/destacada.jpg" alt="advert view">
-      </picture>
+      <h1><?php echo $propery['title']; ?></h1>
+        <img loading="lazy" src="/images/<?php echo $propery['image']; ?>" alt="advert view">
       <div class="resume">
-        <p class="price">80,000,000</p>
+        <p class="price"><?php echo $propery['price']; ?></p>
         <ul class="icons-characteristics">
             <li>
               <img
@@ -19,7 +32,7 @@
                 src="build/img/icono_wc.svg"
                 alt="icon batrooms"
               />
-              <p>3</p>
+              <p><?php echo $propery['bathrooms']; ?></p>
             </li>
             <li>
               <img
@@ -28,7 +41,7 @@
                 src="build/img/icono_estacionamiento.svg"
                 alt="icon garage"
               />
-              <p>3</p>
+              <p><?php echo $propery['garages']; ?></p>
             </li>
             <li>
               <img
@@ -37,21 +50,15 @@
                 src="build/img/icono_dormitorio.svg"
                 alt="icon rooms"
               />
-              <p>4</p>
+              <p><?php echo $propery['rooms']; ?></p>
             </li>
           </ul>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+          <?php echo $propery['description']; ?>
           </p>
       </div>
     </main>
-    <?php addTemplate('footer'); ?>
+    <?php
+      mysqli_close($db);
+      addTemplate('footer');
+    ?>
