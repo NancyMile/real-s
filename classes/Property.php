@@ -162,4 +162,13 @@ class Property{
         //debugear($object); //object with the new values;
         return $object;
     }
+
+    // sincronnise the object on memory with thechanges made by the user
+    public function sincronnise( $args = [] ){
+        foreach($args as $key => $value){
+            if(property_exists($this,$key) && !is_null($value)){
+                $this->$key = $value;
+            }
+        }
+    }
 }

@@ -24,26 +24,11 @@ if(!$id){
 
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    // echo"<pre>";
-    //   var_dump($_POST);
-    // echo"</pre>";
+    //debugear($_POST);
+    $args = $_POST['property'];
 
-    // echo"<pre>";
-    //   var_dump($_FILES);
-    // echo"</pre>";
-    //exit;
-
-    $title = mysqli_real_escape_string($db,$_POST['title']);
-    $price = mysqli_real_escape_string($db,$_POST['price']);
-    $description = mysqli_real_escape_string($db,$_POST['description']);
-    $rooms = mysqli_real_escape_string($db,$_POST['rooms']);
-    $bathrooms = mysqli_real_escape_string($db,$_POST['bathrooms']);
-    $garages = mysqli_real_escape_string($db,$_POST['garages']);
-    $sellerId = mysqli_real_escape_string($db,$_POST['sellerId']);
-    $date = date('Y/m/d');
-    $image = $_FILES['image'];
-    // var_dump($image['name']);
-    // exit;
+    $property->sincronnise($args);
+    //debugear($property);
 
     if(!$title){
       $errors[] = 'Please enter title';
