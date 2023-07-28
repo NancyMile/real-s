@@ -6,6 +6,9 @@
     <input type="number" name="price" id="price" placeholder="price" value="<?php echo sanitizingHtml($property->price); ?>">
     <label for="title">Image</label>
     <input type="file" id="image" accept="image/jpeg,image/png" name="image">
+    <?php if($property->image): ?>
+        <img src="/images/<?php echo $property->image;?>" alt="image"  class="image-small">
+    <?php endif; ?>
     <label for="description">Description</label>
     <textarea id="description" name="description"><?php echo sanitizingHtml($property->description); ?></textarea>
 </fieldset>
