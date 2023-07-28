@@ -6,4 +6,7 @@ require 'functions.php';
 require 'config/database.php';
 require __DIR__.'/../vendor/autoload.php';
 
+//connect to db
+$db = connectionDB();
 use App\Property;
+Property::setDB($db);
