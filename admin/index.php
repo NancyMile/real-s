@@ -1,17 +1,10 @@
 <?php
   require '../includes/app.php';
-  addTemplate('header');
-  $auth = authenticated();
-  if(!$auth){
-    header('location: /');
-  }
+  authenticated();
+  use App\Property;
 
-  //import the conection
-  $db = connectionDB();
-
-  //query
-  $query = "SELECT * FROM properties";
-  $resultQuery = mysqli_query($db,$query);
+   //Implement a method to get the properties using active record
+    $properties = Property::all();
 
   //display conditional message
   $result = $_GET['result'] ?? '';

@@ -116,4 +116,43 @@ class Property{
         }
     return self::$errors;
     }
+
+    //list of all properties
+    public static function all(){
+        $query = "SELECT * FROM properties";
+        $result = self::sqlQuery($query);
+        return $result;
+    }
+
+    public static function sqlQuery($query){
+        //query db
+        $result = self::$db->query($query);
+        //debugear($result->fetch_assoc());
+
+        //iterate results
+        $array = [];
+        while($record = $result->fetch_assoc()){
+            $array[] = self::createObject($record);
+        }
+        //debugear($array);// now is an array of objects
+
+        //free memory
+        $result->free();
+        //return results
+        return $array;
+    }
+
+    public static function createObject($record){
+        $object = new self; //instanciate from the main class Property
+        //debugear($object); //onject  with all the key empty
+
+        foreach($record as $key => $value){
+            if(property_exists($object,$key)){
+                $object->$key = $value;  //if the prop exist asign the value
+            }
+        }
+
+        //debugear($object); //object with the new values;
+        return $object;
+    }
 }
