@@ -15,3 +15,10 @@ function authenticated():bool{
     }
     return false;
 }
+
+function debugear($var){
+    echo "<pre>";
+    var_dump($var);
+    echo "</pre>";
+    exit;
+}
