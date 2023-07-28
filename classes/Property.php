@@ -6,6 +6,9 @@ class Property{
     protected static $db;
     protected static $dbColumns = ['id','title','price','image','description','rooms','bathrooms','garages','seller_id','created_at'];
 
+    //errors
+    protected static $errors = [];
+
     public $id;
     public $title;
     public $price;
@@ -70,5 +73,45 @@ class Property{
             $sanitized[$key] = self::$db->escape_string($value);
         }
         return $sanitized;
+    }
+
+    //validation
+    public static function getErrors(){
+        return self::$errors;
+    }
+
+    public function validate(){
+        if(!$this->title){
+            self::$errors[] = 'Please enter title';
+          }
+        if(!$this->price){
+        self::$errors[] = 'Please enter price';
+        }
+        if(strlen($this->description) < 50){
+        self::$errors[] = 'Please enter description min 50 characters';
+        }
+        if(!$this->rooms){
+        self::$errors[] = 'Please enter rooms';
+        }
+        if(!$this->bathrooms){
+        self::$errors[] = 'Please enter bathrooms';
+        }
+        if(!$this->garages){
+        self::$errors[] = 'Please enter garages';
+        }
+        if(!$this->seller_id){
+        self::$errors[] = 'Please select the seller';
+        }
+        //if(!$this->image['name']){
+        //  self::$errors[] = "Please Upload an image";
+        //}
+
+        //validate size of image (max 100 Kb)
+    //   $size = 1000 * 100;
+
+    //   if($this->image['size'] > $size  || $this->image['error']){
+    //     self::$errors[] = 'Image size must be less that 100 kb';
+    //   }
+    return self::$errors;
     }
 }
