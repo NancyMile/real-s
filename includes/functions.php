@@ -7,13 +7,12 @@ function addTemplate(string $name, bool $home = false){
     include TEMPLATES_URL."/$name.php";
 }
 
-function authenticated():bool{
+function authenticated(){
     session_start();
-    $auth = $_SESSION['login'];
-    if($auth){
-        return true;
+
+    if(!$_SESSION['login']){
+        header('location: /');
     }
-    return false;
 }
 
 function debugear($var){
