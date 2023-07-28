@@ -35,7 +35,7 @@ class Property{
         $this->rooms = $args['rooms'] ?? '';
         $this->bathrooms = $args['bathrooms'] ?? '';
         $this->garages = $args['garages'] ?? '';
-        $this->seller_id = $args['seller_id'] ?? '';
+        $this->seller_id = $args['seller_id'] ?? 1;
         $this->created_at = date('Y/m/d');
     }
 
@@ -122,6 +122,13 @@ class Property{
         $query = "SELECT * FROM properties";
         $result = self::sqlQuery($query);
         return $result;
+    }
+
+    //find a record by id
+    public static function find($id){
+        $query = "SELECT * FROM properties WHERE id = $id ";
+        $result = self::sqlQuery($query);
+        return array_shift($result); //return the first position of the array
     }
 
     public static function sqlQuery($query){
