@@ -29,7 +29,7 @@
 
     if($_FILES['image']['tmp_name']){
       //resize image with  intervention image
-      $image = Image::make($_FILES['image']['tmp_name'])->fit(600,3600);
+      $image = Image::make($_FILES['image']['tmp_name'])->fit(800,600);
       $property->setImage($imageName);
     }
 
