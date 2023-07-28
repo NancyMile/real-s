@@ -83,7 +83,15 @@ class Property{
 
     //set image
     public function setImage($image){
-        //asignt to attribute imagen the mane of the image
+        //delete previous image
+        if(isset($this->id)){
+            //check if the image exist
+            $imageExists = file_exists(IMAGES_FOLDER.$this->image);
+            if($imageExists){
+                unlink(IMAGES_FOLDER.$this->image);
+            }
+        }
+        //asignt to attribute imagen the name of the new image
         if($image){
             $this->image = $image;
         }
