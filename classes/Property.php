@@ -4,6 +4,7 @@ namespace App;
 class Property{
     //db attribute
     protected static $db;
+    protected static $dbColumns = ['id','title','price','image','description','rooms','bathrooms','garages','seller_id','created_at'];
 
     public $id;
     public $title;
@@ -15,6 +16,11 @@ class Property{
     public $garages;
     public $seller_id;
     public $created_at;
+
+    //connection to db
+    public static function setDB($database){
+        self::$db = $database;
+    }
 
     function __construct($args = [])
     {
@@ -32,6 +38,10 @@ class Property{
 
     public function saving(){
         //echo "Saving properties";
+
+        //sanitize data
+        $attributes = $this->sanitizeData();
+
         //save record on db
         $query = "INSERT INTO properties (title,price,image,description,rooms,bathrooms,garages,created_at,seller_id)
         VALUES('$this->title','$this->price','$this->image','$this->description','$this->rooms','$this->bathrooms','$this->garages','$this->created_at','$this->seller_id')";
@@ -40,8 +50,22 @@ class Property{
         //debugear($result);
     }
 
-    //connection to db
-    public static function setDB($database){
-        self::$db = $database;
+    //identify and map the attributes of the db
+    public function attributes(){
+        $attributes = [];
+        foreach(self::$dbColumns as $column){
+            if($column === 'id') continue;
+            $attributes[$column] = $this->$column;
+        }
+        return $attributes;
+    }
+
+    public function sanitizeData(){
+        $attributes = $this->attributes();
+        $sanitized = [];
+        foreach($attributes as $key => $value){
+            $sanitized[$key] = self::$db->scape_string($value);
+        }
+        return $sanitized;
     }
 }

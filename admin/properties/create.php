@@ -102,8 +102,6 @@
       move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
       //exit;
 
-      //echo $query;
-      $result = mysqli_query($db,$query);
       if($result){
       // redirect to admin
       header('Location: /admin?result=1');
