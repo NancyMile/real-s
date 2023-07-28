@@ -14,14 +14,16 @@
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //create a new instance
-    $property = new Property($_POST);
+    $property = new Property($_POST['property']);
 
     // generate a unique imagename
     $imageName = md5(uniqid(rand(),true)).".jpg";
 
-    if($_FILES['image']['tmp_name']){
+    //debugear($_FILES['property']);
+
+    if($_FILES['property']['tmp_name']['image']){
       //resize image with  intervention image
-      $image = Image::make($_FILES['image']['tmp_name'])->fit(800,600);
+      $image = Image::make($_FILES['property']['tmp_name']['image'])->fit(800,600);
       $property->setImage($imageName);
     }
 
