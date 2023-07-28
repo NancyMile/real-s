@@ -30,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
   }
 }
+addTemplate('header');
 ?>
 <main class="contenedor section">
     <h1>Admin Page</h1>
@@ -54,21 +55,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       </thead>
       <!-- display results-->
       <tbody>
-        <?php while($propiety = mysqli_fetch_assoc($resultQuery)): ?>
+        <?php foreach($properties as $property): ?>
         <tr>
-          <td><?php echo $propiety['id'];?></td>
-          <td><?php echo $propiety['title'];?></td>
-          <td><img src="/images/<?php echo $propiety['image'];?>" alt="image" class="image-table"></td>
-          <td>$ <?php echo $propiety['price'];?></td>
+          <td><?php echo $property->id;?></td>
+          <td><?php echo $property->title;?></td>
+          <td><img src="/images/<?php echo $property->image;?>" alt="image" class="image-table"></td>
+          <td>$ <?php echo $property->price;?></td>
           <td>
-            <a href="/admin/properties/update.php?id=<?php echo $propiety['id']; ?>" class="btn-yellow-block">Update</a>
+            <a href="/admin/properties/update.php?id=<?php echo $property->id; ?>" class="btn-yellow-block">Update</a>
             <form method="POST" class="w-100">
-              <input type="hidden" name="id" value="<?php echo $propiety['id']; ?>">
+              <input type="hidden" name="id" value="<?php echo $property->id; ?>">
               <input type="submit" class="btn btn-red-block" value ="Delete">
             </form>
           </td>
         </tr>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
       </tbody>
 
     </table>
