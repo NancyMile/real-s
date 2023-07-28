@@ -1,6 +1,7 @@
 <?php
   require '../../includes/app.php';
   use App\Property;
+  use Intervention\Image\ImageManagerStatic as Image;
 
   authenticated();
 
@@ -20,27 +21,37 @@
 
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    //create a new instance
     $property = new Property($_POST);
+
+    // generate a unique imagename
+    $imageName = md5(uniqid(rand(),true)).".jpg";
+
+    if($_FILES['image']['tmp_name']){
+      //resize image with  intervention image
+      $image = Image::make($_FILES['image']['tmp_name'])->fit(600,3600);
+      $property->setImage($imageName);
+    }
+
     $errors = $property->validate();
 
     //check that $errors array is empty
     if(empty($errors)){
-      /** upload files **/
-
-      //create folder
-      $imagesFolder = '../../images/';
-      //check if the folder already exists
-      if(!is_dir($imagesFolder)){
-        mkdir($imagesFolder);
+      //create folder for uploading images
+      if(!is_dir(IMAGES_FOLDER)){
+        mkdir(IMAGES_FOLDER);
       }
-      // generate a unique imagename
-      $imageName = md5(uniqid(rand(),true)).".jpg";
 
-      //upload the image
-      move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
-      //exit;
+      ///save image on server
+      $image->save(IMAGES_FOLDER.$imageName);
 
-      $property->saving();
+      //save on db
+      $result = $property->saving();
+
+      if($result){
+        //redirect user
+        header('location: /admin?result=1');
+      }
     }
   }
   addTemplate('header');
@@ -94,3 +105,5 @@
     </form>
 </main>
 <?php addTemplate('footer'); ?>
+use App\Property;
+use Intervention\Image\Image;

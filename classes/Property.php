@@ -30,7 +30,7 @@ class Property{
         $this->id = $args['id'] ?? '';
         $this->title = $args['title'] ?? '';
         $this->price = $args['price'] ?? '';
-        $this->image = $args['image'] ?? 'image.jpg';
+        $this->image = $args['image'] ?? '';
         $this->description = $args['description'] ?? '';
         $this->rooms = $args['rooms'] ?? '';
         $this->bathrooms = $args['bathrooms'] ?? '';
@@ -54,6 +54,7 @@ class Property{
 
         $result = self::$db->query($query);
         //debugear($result);
+        return $result;
     }
 
     //identify and map the attributes of the db
@@ -80,6 +81,14 @@ class Property{
         return self::$errors;
     }
 
+    //set image
+    public function setImage($image){
+        //asignt to attribute imagen the mane of the image
+        if($image){
+            $this->image = $image;
+        }
+    }
+
     public function validate(){
         if(!$this->title){
             self::$errors[] = 'Please enter title';
@@ -102,16 +111,9 @@ class Property{
         if(!$this->seller_id){
         self::$errors[] = 'Please select the seller';
         }
-        //if(!$this->image['name']){
-        //  self::$errors[] = "Please Upload an image";
-        //}
-
-        //validate size of image (max 100 Kb)
-    //   $size = 1000 * 100;
-
-    //   if($this->image['size'] > $size  || $this->image['error']){
-    //     self::$errors[] = 'Image size must be less that 100 kb';
-    //   }
+        if(!$this->image){
+         self::$errors[] = "Please Upload an image";
+        }
     return self::$errors;
     }
 }
