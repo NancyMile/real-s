@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-ini_set('display_errors','Off');
+ini_set('display_errors','on');
 
-define('TEMPLATES_URL',__DIR__.'/templates');
-define('FUNCTIONS_URL',__DIR__.'functions.php');
+require 'functions.php';
+require 'config/database.php';
+require __DIR__.'/../vendor/autoload.php';
