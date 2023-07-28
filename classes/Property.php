@@ -43,9 +43,12 @@ class Property{
         $attributes = $this->sanitizeData();
 
         //save record on db
-        $query = "INSERT INTO properties (title,price,image,description,rooms,bathrooms,garages,created_at,seller_id)
-        VALUES('$this->title','$this->price','$this->image','$this->description','$this->rooms','$this->bathrooms','$this->garages','$this->created_at','$this->seller_id')";
-        //debugear($query);
+        $query = "INSERT INTO properties ( ";
+        $query.= join(', ',array_keys($attributes));
+        $query.= " )VALUES('";
+        $query.= join("', '",array_values($attributes));
+        $query.= "')";
+
         $result = self::$db->query($query);
         //debugear($result);
     }
@@ -64,7 +67,7 @@ class Property{
         $attributes = $this->attributes();
         $sanitized = [];
         foreach($attributes as $key => $value){
-            $sanitized[$key] = self::$db->scape_string($value);
+            $sanitized[$key] = self::$db->escape_string($value);
         }
         return $sanitized;
     }
