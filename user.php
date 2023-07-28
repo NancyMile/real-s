@@ -1,6 +1,6 @@
 <?php
 //import connection
-require 'includes/config/database.php';
+require 'includes/app.php';
 $db = connectionDB();
 //create email and pass
 $email = 'test@test.com';

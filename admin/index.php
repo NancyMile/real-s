@@ -1,5 +1,5 @@
 <?php
-  require '../includes/functions.php';
+  require '../includes/app.php';
   addTemplate('header');
   $auth = authenticated();
   if(!$auth){
@@ -7,7 +7,6 @@
   }
 
   //import the conection
-  require '../includes/config/database.php';
   $db = connectionDB();
 
   //query

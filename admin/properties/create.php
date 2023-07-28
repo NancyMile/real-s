@@ -1,11 +1,10 @@
 <?php
-  require '../../includes/functions.php';
+  require '../../includes/app.php';
   $auth = authenticated();
   if(!$auth){
     header('location: /');
   }
 
-  require '../../includes/config/database.php';
   $db = connectionDB();
 
   //get sellers

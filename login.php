@@ -1,5 +1,5 @@
 <?php
-    require 'includes/config/database.php';
+    require 'includes/app.php';
     $db = connectionDB();
 
     //authenticate user
@@ -52,7 +52,6 @@
     }
 
   //includes heder
-  require 'includes/functions.php';
   addTemplate('header');
 ?>
     <main class="contenedor section contenido-centrado">

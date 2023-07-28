@@ -5,7 +5,7 @@
   if(!$id){
     header('location: /');
   }
-    require 'includes/config/database.php';
+    require 'includes/app.php';
     $db =connectionDB();
     $query = "SELECT * FROM properties WHERE id = $id";
     $results = mysqli_query($db,$query);
@@ -16,8 +16,7 @@
 
     $propery = mysqli_fetch_assoc($results);
 
-  require 'includes/functions.php';
-  addTemplate('header');
+    addTemplate('header');
 ?>
     <main  class="contenedor section contenido-centrado">
       <h1><?php echo $propery['title']; ?></h1>

@@ -1,5 +1,5 @@
 <?php
-require '../../includes/functions.php';
+require '../../includes/app.php';
 $auth = authenticated();
 if(!$auth){
   header('location: /');
@@ -12,7 +12,6 @@ if(!$auth){
 if(!$id){
  header('Location: /admin');
 }
-  require '../../includes/config/database.php';
   $db = connectionDB();
 
   //get specific property
