@@ -27,27 +27,6 @@
     //debugear($property);
     $property->saving();
 
-    // echo"<pre>";
-    //   var_dump($_POST);
-    // echo"</pre>";
-
-    // echo"<pre>";
-    //   var_dump($_FILES);
-    // echo"</pre>";
-    // exit;
-
-    $title = mysqli_real_escape_string($db,$_POST['title']);
-    $price = mysqli_real_escape_string($db,$_POST['price']);
-    $description = mysqli_real_escape_string($db,$_POST['description']);
-    $rooms = mysqli_real_escape_string($db,$_POST['rooms']);
-    $bathrooms = mysqli_real_escape_string($db,$_POST['bathrooms']);
-    $garages = mysqli_real_escape_string($db,$_POST['garages']);
-    $sellerId = mysqli_real_escape_string($db,$_POST['seller_id']);
-    $date = date('Y/m/d');
-    $image = $_FILES['image'];
-    // var_dump($image['name']);
-    // exit;
-
     if(!$title){
       $errors[] = 'Please enter title';
     }
