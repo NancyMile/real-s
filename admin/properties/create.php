@@ -1,9 +1,8 @@
 <?php
   require '../../includes/app.php';
-  $auth = authenticated();
-  if(!$auth){
-    header('location: /');
-  }
+  use App\Property;
+
+  authenticated();
 
   $db = connectionDB();
 
@@ -24,6 +23,10 @@
 
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $property = new Property($_POST);
+    //debugear($property);
+    $property->saving();
+
     // echo"<pre>";
     //   var_dump($_POST);
     // echo"</pre>";
@@ -39,7 +42,7 @@
     $rooms = mysqli_real_escape_string($db,$_POST['rooms']);
     $bathrooms = mysqli_real_escape_string($db,$_POST['bathrooms']);
     $garages = mysqli_real_escape_string($db,$_POST['garages']);
-    $sellerId = mysqli_real_escape_string($db,$_POST['sellerId']);
+    $sellerId = mysqli_real_escape_string($db,$_POST['seller_id']);
     $date = date('Y/m/d');
     $image = $_FILES['image'];
     // var_dump($image['name']);
@@ -99,9 +102,6 @@
       move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
       //exit;
 
-      //save record on db
-      $query = "INSERT INTO properties (title,price,image,description,rooms,bathrooms,garages,created_at,seller_id)
-      VALUES('$title','$price','$imageName','$description','$rooms','$bathrooms','$garages','$date','$sellerId')";
       //echo $query;
       $result = mysqli_query($db,$query);
       if($result){
@@ -150,7 +150,7 @@
       <fieldset>
         <legend>Seller Info</legend>
         <label for="name">Name</label>
-        <select name="sellerId">
+        <select name="seller_id">
           <option value="" selected disabled>-- Select --</option>
             <?php while($seller = mysqli_fetch_assoc($result)) : ?>
               <option <?php echo $seller['id'] === $sellerId ? 'selected': ''; ?> value="<?php echo $seller['id']?>"><?php echo $seller['name'].' '.$seller['lastname'] ?></option>
