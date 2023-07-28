@@ -10,9 +10,6 @@
   $query = "SELECT * FROM sellers";
   $result = mysqli_query($db,$query);
 
-  //error messages
-  $errors = [];
-
   $title = '';
   $price = '';
   $description = '';
@@ -24,45 +21,7 @@
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $property = new Property($_POST);
-    //debugear($property);
-    $property->saving();
-
-    if(!$title){
-      $errors[] = 'Please enter title';
-    }
-    if(!$price){
-      $errors[] = 'Please enter price';
-    }
-    if(strlen($description) < 50){
-      $errors[] = 'Please enter description min 50 characters';
-    }
-    if(!$rooms){
-      $errors[] = 'Please enter rooms';
-    }
-    if(!$bathrooms){
-      $errors[] = 'Please enter bathrooms';
-    }
-    if(!$garages){
-      $errors[] = 'Please enter garages';
-    }
-    if(!$sellerId){
-      $errors[] = 'Please select the seller';
-    }
-    if(!$image['name']){
-      $errors[] = "Please Upload an image";
-    }
-
-    //validate size of image (max 100 Kb)
-    $size = 1000 * 100;
-
-    if($image['size'] > $size  || $image['error']){
-      $errors[] = 'Image size must be less that 100 kb';
-    }
-
-    // echo"<pre>";
-    //   var_dump($errors);
-    // echo"</pre>";
-    //exit;
+    $errors = $property->validate();
 
     //check that $errors array is empty
     if(empty($errors)){
@@ -81,10 +40,7 @@
       move_uploaded_file($image['tmp_name'],$imagesFolder.$imageName);
       //exit;
 
-      if($result){
-      // redirect to admin
-      header('Location: /admin?result=1');
-      }
+      $property->saving();
     }
   }
   addTemplate('header');
