@@ -36,10 +36,12 @@ class Property{
         $query = "INSERT INTO properties (title,price,image,description,rooms,bathrooms,garages,created_at,seller_id)
         VALUES('$this->title','$this->price','$this->image','$this->description','$this->rooms','$this->bathrooms','$this->garages','$this->created_at','$this->seller_id')";
         //debugear($query);
+        $result = self::$db->query($query);
+        //debugear($result);
     }
 
     //connection to db
     public static function setDB($database){
-        self::$db;
+        self::$db = $database;
     }
 }
