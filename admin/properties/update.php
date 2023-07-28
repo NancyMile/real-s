@@ -1,23 +1,19 @@
 <?php
-require '../../includes/app.php';
-$auth = authenticated();
-if(!$auth){
-  header('location: /');
-}
 
- // validate url valid ID
+use App\Property;
+
+require '../../includes/app.php';
+authenticated();
+
+// validate url valid ID
  $id =$_GET['id'];
  $id = filter_var($id,FILTER_VALIDATE_INT);
 
 if(!$id){
  header('Location: /admin');
 }
-  $db = connectionDB();
 
-  //get specific property
-  $query = "SELECT * FROM properties where id = $id";
-  $result = mysqli_query($db,$query);
-  $property = mysqli_fetch_assoc($result);
+  $property = Property::find($id);
 
    //get sellers
    $query = "SELECT * FROM sellers";
@@ -25,14 +21,6 @@ if(!$id){
 
   //error messages
   $errors = [];
-
-  $title = $property['title'];
-  $price = $property['price'];
-  $description = $property['description'];
-  $rooms = $property['rooms'];
-  $bathrooms = $property['bathrooms'];
-  $garages = $property['garages'];
-  $sellerId = $property['seller_id'];
 
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -148,37 +136,7 @@ if(!$id){
     <?php endif; ?>
 
     <form class="formulario" method="POST" enctype="multipart/form-data">
-      <fieldset>
-        <legend>Genral Info</legend>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" placeholder="title" value="<?php echo $title; ?>">
-        <label for="price">Price</label>
-        <input type="number" name="price" id="price" placeholder="price" value="<?php echo $price; ?>">
-        <label for="title">Image</label>
-        <input type="file" id="image" accept="image/jpeg,image/png" name="image">
-        <img src="/images/<?php echo $property['image'] ; ?>" alt="image" class="image-small">
-        <label for="description">Description</label>
-        <textarea id="description" name="description"><?php echo $description; ?></textarea>
-      </fieldset>
-      <fieldset>
-        <legend>Property Info</legend>
-        <label for="rooms">Rooms</label>
-        <input type="number" id="rooms" name="rooms" min="1" max="9" placeholder="Eg: 3" value="<?php echo $rooms; ?>">
-        <label for="bathrooms">Bathrooms</label>
-        <input type="number" id="bathrooms" name="bathrooms" min="1" max="4" placeholder="Eg: 3" value="<?php echo $bathrooms; ?>">
-        <label for="garages">Garages</label>
-        <input type="number" id="garages" name="garages" min="1" max="3" placeholder="Eg: 3" value="<?php echo $garages; ?>">
-      </fieldset>
-      <fieldset>
-        <legend>Seller Info</legend>
-        <label for="name">Name</label>
-        <select name="sellerId">
-          <option value="" selected disabled>-- Select --</option>
-            <?php while($seller = mysqli_fetch_assoc($result)) : ?>
-              <option <?php echo $seller['id'] === $sellerId ? 'selected': ''; ?> value="<?php echo $seller['id']?>"><?php echo $seller['name'].' '.$seller['lastname'] ?></option>
-            <?php endwhile; ?>
-        </select>
-      </fieldset>
+      <?php include '../../includes/templates/form_properties.php' ?>
       <input type="submit" value="Update" class="btn btn-green">
     </form>
 </main>
