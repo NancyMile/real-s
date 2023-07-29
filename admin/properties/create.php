@@ -5,8 +5,6 @@
 
   authenticated();
 
-  $db = connectionDB();
-
   //get sellers
   $query = "SELECT * FROM sellers";
   $result = mysqli_query($db,$query);
@@ -40,12 +38,7 @@
       $image->save(IMAGES_FOLDER.$imageName);
 
       //save on db
-      $result = $property->saving();
-
-      if($result){
-        //redirect user
-        header('location: /admin?result=1');
-      }
+      $property->saving();
     }
   }
   addTemplate('header');
@@ -70,5 +63,3 @@
     </form>
 </main>
 <?php addTemplate('footer'); ?>
-use App\Property;
-use Intervention\Image\Image;

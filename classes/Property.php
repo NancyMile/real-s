@@ -27,7 +27,7 @@ class Property{
 
     function __construct($args = [])
     {
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->title = $args['title'] ?? '';
         $this->price = $args['price'] ?? '';
         $this->image = $args['image'] ?? '';
@@ -40,7 +40,7 @@ class Property{
     }
 
     public function saving(){
-        if(isset($this->id)){
+        if(!is_null($this->id)){
             $this->update();
         }else{
             $this->create();
@@ -82,7 +82,10 @@ class Property{
 
         $result = self::$db->query($query);
         //debugear($result);
-        return $result;
+        if($result){
+            //redirect user
+            header('location: /admin?result=1');
+        }
     }
 
     public function Delete(){
