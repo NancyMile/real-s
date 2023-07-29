@@ -15,19 +15,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
   if($id){
     //remove the file
-    $query = "SELECT image FROM properties WHERE id = $id";
-    $result = mysqli_query($db,$query);
-    $property = mysqli_fetch_assoc($result);
-
-    unlink('../images/'.$property['image']);
-
-    //remove  property
-    $query = "DELETE FROM properties WHERE id = $id";
-    $result = mysqli_query($db,$query);
-
-    if($result){
-      header('Location: /admin?result=3');
-    }
+    $property = Property::find($id);
+    $property->delete();
   }
 }
 addTemplate('header');

@@ -58,7 +58,7 @@ class Property{
 
          $query = "UPDATE properties SET ";
          $query .= join(', ',$values);
-         $query .= " WHERE id = $this->id";
+         $query .= " WHERE id = '".self::$db->escape_string($this->id)."'";
          $query .= " LIMIT 1";
 
          $result = self::$db->query($query);
@@ -83,6 +83,14 @@ class Property{
         $result = self::$db->query($query);
         //debugear($result);
         return $result;
+    }
+
+    public function Delete(){
+        $query = "DELETE FROM properties WHERE id = ".self::$db->escape_string($this->id)." LIMIT 1";
+        $result = self::$db->query($query);
+        if($result){
+            header('Location: /admin?result=3');
+        }
     }
 
     //identify and map the attributes of the db
