@@ -1,6 +1,7 @@
 <?php
 
 use App\Property;
+use App\Seller;
 use Intervention\Image\ImageManagerStatic as Image;
 
 require '../../includes/app.php';
@@ -16,10 +17,8 @@ if(!$id){
 
   $property = Property::find($id);
 
-   //get sellers
-   $query = "SELECT * FROM sellers";
-   $result = mysqli_query($db,$query);
-
+  //get sellers
+  $sellers = Seller::all();
   //error messages
   $errors = Property::getErrors();
 
@@ -47,10 +46,12 @@ if(!$id){
 
     //check that $errors array is empty
     if(empty($errors)){
-      //save image
-      $image->save(IMAGES_FOLDER.$imageName);
-      //update record
-      $result = $property->saving();
+      if($_FILES['property']['tmp_name']['image']){
+        //save image
+        $image->save(IMAGES_FOLDER.$imageName);
+      }
+        //update record
+        $result = $property->saving();
     }
   }
 
