@@ -95,7 +95,7 @@ class ActiveRecord {
 
     //validation
     public static function getErrors(){
-        return self::$errors;
+        return static::$errors;
     }
 
     //set image
@@ -120,31 +120,8 @@ class ActiveRecord {
     }
 
     public function validate(){
-        if(!$this->title){
-            self::$errors[] = 'Please enter title';
-          }
-        if(!$this->price){
-        self::$errors[] = 'Please enter price';
-        }
-        if(strlen($this->description) < 50){
-        self::$errors[] = 'Please enter description min 50 characters';
-        }
-        if(!$this->rooms){
-        self::$errors[] = 'Please enter rooms';
-        }
-        if(!$this->bathrooms){
-        self::$errors[] = 'Please enter bathrooms';
-        }
-        if(!$this->garages){
-        self::$errors[] = 'Please enter garages';
-        }
-        if(!$this->seller_id){
-        self::$errors[] = 'Please select the seller';
-        }
-        if(!$this->image){
-         self::$errors[] = "Please Upload an image";
-        }
-    return self::$errors;
+        static::$errors =[];
+        return static::$errors;
     }
 
     //list of all field of the etable
