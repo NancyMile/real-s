@@ -77,7 +77,7 @@ class ActiveRecord {
     //identify and map the attributes of the db
     public function attributes(){
         $attributes = [];
-        foreach(self::$dbColumns as $column){
+        foreach(static::$dbColumns as $column){
             if($column === 'id') continue;
             $attributes[$column] = $this->$column;
         }
@@ -146,7 +146,7 @@ class ActiveRecord {
         //iterate results
         $array = [];
         while($record = $result->fetch_assoc()){
-            $array[] = self::createObject($record);
+            $array[] = static::createObject($record);
         }
         //debugear($array);// now is an array of objects
 
