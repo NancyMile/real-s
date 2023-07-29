@@ -40,6 +40,34 @@ class Property{
     }
 
     public function saving(){
+        if(isset($this->id)){
+            $this->update();
+        }else{
+            $this->create();
+        }
+    }
+
+    public  function update(){
+        //sanitize the attributes
+        $attributes = $this->sanitizeData();
+
+        $values = [];
+         foreach($attributes as $key => $value ){
+            $values[] = "{$key} = '{$value}'";
+         }
+
+         $query = "UPDATE properties SET ";
+         $query .= join(', ',$values);
+         $query .= " WHERE id = $this->id";
+         $query .= " LIMIT 1";
+
+         $result = self::$db->query($query);
+         if($result){
+            // redirect to admin
+            header('Location: /admin?result=2');
+        }
+    }
+    public function create(){
         //echo "Saving properties";
 
         //sanitize data
