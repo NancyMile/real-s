@@ -2,9 +2,11 @@
   require '../includes/app.php';
   authenticated();
   use App\Property;
+use App\Seller;
 
    //Implement a method to get the properties using active record
     $properties = Property::all();
+    $sellers = Seller::all();
 
   //display conditional message
   $result = $_GET['result'] ?? '';
