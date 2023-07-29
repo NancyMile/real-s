@@ -89,6 +89,7 @@ class Property{
         $query = "DELETE FROM properties WHERE id = ".self::$db->escape_string($this->id)." LIMIT 1";
         $result = self::$db->query($query);
         if($result){
+            $this->deleteImage();
             header('Location: /admin?result=3');
         }
     }
@@ -121,15 +122,20 @@ class Property{
     public function setImage($image){
         //delete previous image
         if(isset($this->id)){
-            //check if the image exist
-            $imageExists = file_exists(IMAGES_FOLDER.$this->image);
-            if($imageExists){
-                unlink(IMAGES_FOLDER.$this->image);
-            }
+            $this->deleteImage();
         }
         //asignt to attribute imagen the name of the new image
         if($image){
             $this->image = $image;
+        }
+    }
+
+    //delete image
+    public function deleteImage(){
+        //check if the image exist
+        $imageExists = file_exists(IMAGES_FOLDER.$this->image);
+        if($imageExists){
+            unlink(IMAGES_FOLDER.$this->image);
         }
     }
 
