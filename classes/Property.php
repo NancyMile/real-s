@@ -124,7 +124,7 @@ class Property{
     //set image
     public function setImage($image){
         //delete previous image
-        if(isset($this->id)){
+        if(!is_null($this->id)){
             $this->deleteImage();
         }
         //asignt to attribute imagen the name of the new image
