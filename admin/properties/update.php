@@ -47,7 +47,10 @@ if(!$id){
 
     //check that $errors array is empty
     if(empty($errors)){
-     $result = $property->saving();
+      //save image
+      $image->save(IMAGES_FOLDER.$imageName);
+      //update record
+      $result = $property->saving();
     }
   }
 
