@@ -26,8 +26,8 @@
     <label for="name">Name</label>
     <select name="property[seller_id]">
         <option value="" selected disabled>-- Select --</option>
-        <?php while($seller = mysqli_fetch_assoc($result)) : ?>
-            <option <?php echo $seller['id'] === $sellerId ? 'selected': ''; ?> value="<?php echo $seller['id']?>"><?php echo $seller['name'].' '.$seller['lastname'] ?></option>
-        <?php endwhile; ?>
+        <?php foreach( $sellers as $seller) : ?>
+            <option <?php echo $seller->id === $property->seller_id ? 'selected': ''; ?> value="<?php echo $seller->id?>"><?php echo $seller->name.' '.$seller->lastname ?></option>
+        <?php endforeach; ?>
     </select>
 </fieldset>

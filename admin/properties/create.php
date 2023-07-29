@@ -1,13 +1,13 @@
 <?php
   require '../../includes/app.php';
   use App\Property;
+  use App\Seller;
   use Intervention\Image\ImageManagerStatic as Image;
 
   authenticated();
 
   //get sellers
-  $query = "SELECT * FROM sellers";
-  $result = mysqli_query($db,$query);
+  $sellers = Seller::all();
 
   //executes after the user sends the form
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
