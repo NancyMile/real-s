@@ -16,9 +16,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $id = filter_var($id,FILTER_VALIDATE_INT);
 
   if($id){
-    //remove the file
-    $property = Property::find($id);
-    $property->delete();
+
+    $type = $_POST['type'];
+
+    if(validateContentType($type)){
+      //is valid type
+      if($type === 'property'){
+        //remove the file
+        $property = Property::find($id);
+        $property->delete();
+      }elseif($type === 'seller'){
+        //remove the file
+        $seller = Seller::find($id);
+        $seller->delete();
+      }
+    }
   }
 }
 addTemplate('header');
@@ -33,7 +45,7 @@ addTemplate('header');
     <p class="alert success">Add Deleted!</p>
     <?php endif; ?>
     <a href="/admin/properties/create.php" class="btn btn-green">Create</a>
-
+      <h2>Properties</h2>
     <table class="properties">
       <thead>
         <tr>
@@ -56,18 +68,44 @@ addTemplate('header');
             <a href="/admin/properties/update.php?id=<?php echo $property->id; ?>" class="btn-yellow-block">Update</a>
             <form method="POST" class="w-100">
               <input type="hidden" name="id" value="<?php echo $property->id; ?>">
+              <input type="hidden" name="type" value="property">
               <input type="submit" class="btn btn-red-block" value ="Delete">
             </form>
           </td>
         </tr>
         <?php endforeach; ?>
       </tbody>
-
     </table>
-
+    <h2>Sellers</h2>
+    <table class="properties">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <!-- display results-->
+      <tbody>
+        <?php foreach($sellers as $seller): ?>
+        <tr>
+          <td><?php echo $seller->id;?></td>
+          <td><?php echo $seller->name. ' '.$seller->lastname;?></td>
+          <td><?php echo $seller->phone;?></td>
+          <td>
+            <a href="/admin/sellers/update.php?id=<?php echo $seller->id; ?>" class="btn-yellow-block">Update</a>
+            <form method="POST" class="w-100">
+              <input type="hidden" name="id" value="<?php echo $seller->id; ?>">
+              <input type="hidden" name="type" value="seller">
+              <input type="submit" class="btn btn-red-block" value ="Delete">
+            </form>
+          </td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
 </main>
 <?php
-  //close connection
-  mysqli_close($db);
   addTemplate('footer');
 ?>

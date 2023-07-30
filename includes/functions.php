@@ -28,3 +28,9 @@ function sanitizingHtml($html): string {
     $s = htmlspecialchars($html);
     return $s;
 }
+
+//validate type content
+function validateContentType($type){
+    $types = ['sellers','properties'];
+    return in_array($type, $types);
+}
