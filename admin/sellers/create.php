@@ -6,13 +6,21 @@ authenticated();
 $seller = new Seller;
 //error messages
 $errors = Seller::getErrors();
-if($_SERVER['REQUEST_METHOD' === 'POST']){
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    //debugear($_POST);
+    $seller = new Seller($_POST['seller']);
 
+    //validate
+    $errors = $seller->validate();
+
+    if(empty($errors)){
+        $seller->saving();
+    }
 }
 addTemplate('header');
 ?>
 <main class="contenedor section">
-    <h1>Update Seller</h1>
+    <h1>Create Seller</h1>
     <a href="/admin" class="btn btn-green">Admin</a>
     <?php foreach($errors as $error): ?>
       <div class="alert error">
@@ -25,7 +33,7 @@ addTemplate('header');
       </div>
     <?php endif; ?>
 
-    <form class="formulario" method="POST" action="/admin/sellers/update.php">
+    <form class="formulario" method="POST" action="/admin/sellers/create.php">
     <?php include '../../includes/templates/form_sellers.php'; ?>
     <input type="submit" value="Save" class="btn btn-green">
     </form>
