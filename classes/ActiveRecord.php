@@ -124,6 +124,13 @@ class ActiveRecord {
         return static::$errors;
     }
 
+    // get specific number of records
+    public static function get($count){
+        $query = "SELECT * FROM ".static::$table." LIMIT ".$count;
+        $result = self::sqlQuery($query);
+        return $result;
+    }
+
     //list of all field of the etable
     public static function all(){
         $query = "SELECT * FROM ".static::$table;

@@ -1,8 +1,12 @@
 <?php
  use App\Property;
 
- $properties = Property::all();
-
+ //debugear($_SERVER);
+ if($_SERVER['SCRIPT_NAME'] === '/index.php'){
+    $properties = Property::get(3);
+ }else{
+    $properties = Property::all();
+ }
 
 ?>
 <div class="container-adverts">

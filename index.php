@@ -40,10 +40,9 @@
         <!--end icon-->
       </div>
     </main>
-    <section class="section contenedor">
+    <section class="contenedor section ">
       <h2>Properties for sale</h2>
       <?php
-        $limit = 3;
         include 'includes/templates/adverts.php'?>
       <div class="display_all align-right">
         <a class="btn-green" href="advert.php">More Properties</a>
