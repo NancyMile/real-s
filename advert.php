@@ -2,7 +2,7 @@
   require 'includes/app.php';
   addTemplate('header');
 ?>
-    <main>
+    <main class="contenedor section">
       <h1>Adverts</h1>
       <?php
         $limit = 9;
