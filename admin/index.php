@@ -38,13 +38,14 @@ addTemplate('header');
 <main class="contenedor section">
     <h1>Admin Page</h1>
     <?php if(intval($result) === 1): ?>
-      <p class="alert success">Add Created!</p>
+      <p class="alert success">Created!</p>
     <?php elseif(intval($result) === 2): ?>
-    <p class="alert success">Add Updated!</p>
+    <p class="alert success">Updated!</p>
     <?php elseif(intval($result) === 3): ?>
-    <p class="alert success">Add Deleted!</p>
+    <p class="alert success">Deleted!</p>
     <?php endif; ?>
-    <a href="/admin/properties/create.php" class="btn btn-green">Create</a>
+    <a href="/admin/properties/create.php" class="btn btn-green">Create Property</a>
+    <a href="/admin/sellers/create.php" class="btn btn-yellow">Create Seller</a>
       <h2>Properties</h2>
     <table class="properties">
       <thead>
