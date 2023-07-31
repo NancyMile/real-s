@@ -1,19 +1,18 @@
 <?php
-    $db = connectionDB();
+ use App\Property;
 
-    //query
-    $query = "SELECT * FROM properties LIMIT $limit";
-    $result = mysqli_query($db,$query);
+ $properties = Property::all();
+
 
 ?>
 <div class="container-adverts">
-    <?php while($property = mysqli_fetch_assoc($result)): ?>
+    <?php foreach($properties as $property): ?>
     <div class="advert">
-        <img loading="lazy" src="/images/<?php echo $property['image'];?>" alt="advert" />
+        <img loading="lazy" src="/images/<?php echo $property->image;?>" alt="advert" />
         <div class="content-advert">
-            <h3><?php echo $property['title'];?></h3>
-            <p><?php echo $property['description'];?></p>
-            <p class="price"><?php echo $property['price'];?></p>
+            <h3><?php echo $property->title;?></h3>
+            <p><?php echo $property->description;?></p>
+            <p class="price"><?php echo $property->price;?></p>
             <ul class="icons-characteristics">
             <li>
                 <img
@@ -22,7 +21,7 @@
                 src="build/img/icono_wc.svg"
                 alt="icon batrooms"
                 />
-                <p><?php echo $property['bathrooms'];?></p>
+                <p><?php echo $property->bathrooms;?></p>
             </li>
             <li>
                 <img
@@ -31,7 +30,7 @@
                 src="build/img/icono_estacionamiento.svg"
                 alt="icon garage"
                 />
-                <p><?php echo $property['garages'];?></p>
+                <p><?php echo $property->garages;?></p>
             </li>
             <li>
                 <img
@@ -40,15 +39,14 @@
                 src="build/img/icono_dormitorio.svg"
                 alt="icon rooms"
                 />
-                <p><?php echo $property['rooms'];?></p>
+                <p><?php echo $property->rooms;?></p>
             </li>
             </ul>
-            <a class="btn btn-yellow-block" href="viewAdvert.php?id=<?php echo $property['id'];?>">Property</a>
+            <a class="btn btn-yellow-block" href="viewAdvert.php?id=<?php echo $property->id;?>">Property</a>
         </div>
     <!-- content advert-->
     </div>
-    <?php endwhile; ?>
+    <?php endforeach; ?>
     <!--end advert-->
 </div>
 <!--end container-adverts-->
-<?php  mysqli_close($db); ?>
