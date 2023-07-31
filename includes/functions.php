@@ -34,3 +34,24 @@ function validateContentType($type){
     $types = ['sellers','properties'];
     return in_array($type, $types);
 }
+
+//display messages
+function displayMessages($cod){
+    $message = '';
+    switch($cod){
+        case 1:
+            $message = "Created";
+            break;
+        case 2:
+            $message = "Updated";
+            break;
+        case 3:
+            $message = "Deleted";
+            break;
+        default:
+            $message = false;
+        break;
+    }
+    return $message;
+}
+

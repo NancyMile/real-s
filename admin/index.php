@@ -2,7 +2,7 @@
   require '../includes/app.php';
   authenticated();
   use App\Property;
-use App\Seller;
+  use App\Seller;
 
    //Implement a method to get the properties using active record
     $properties = Property::all();
@@ -16,7 +16,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $id = filter_var($id,FILTER_VALIDATE_INT);
 
   if($id){
-
     $type = $_POST['type'];
 
     if(validateContentType($type)){
@@ -37,13 +36,10 @@ addTemplate('header');
 ?>
 <main class="contenedor section">
     <h1>Admin Page</h1>
-    <?php if(intval($result) === 1): ?>
-      <p class="alert success">Created!</p>
-    <?php elseif(intval($result) === 2): ?>
-    <p class="alert success">Updated!</p>
-    <?php elseif(intval($result) === 3): ?>
-    <p class="alert success">Deleted!</p>
-    <?php endif; ?>
+    <?php $message = displayMessages(intval($result));
+      if($message){ ?>
+        <p class="alert success"> <?php echo sanitizingHtml($message); ?> </p>
+      <?php } ?>
     <a href="/admin/properties/create.php" class="btn btn-green">Create Property</a>
     <a href="/admin/sellers/create.php" class="btn btn-yellow">Create Seller</a>
       <h2>Properties</h2>
