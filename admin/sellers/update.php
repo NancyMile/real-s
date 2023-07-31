@@ -3,11 +3,30 @@ require '../../includes/app.php';
 use App\Seller;
 authenticated();
 
-$seller = new Seller;
+$id = $_GET['id'];
+$id = filter_var($id,FILTER_VALIDATE_INT);
+
+if(!$id){
+  header('location: /admin');
+}
+
+//get the seller
+$seller = Seller::find($id);
+
 //error messages
 $errors = Seller::getErrors();
-if($_SERVER['REQUEST_METHOD' === 'POST']){
 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+  //sincronize the values
+  $args = $_POST['seller'];
+
+  $seller->sincronnise($args);
+
+  $errors = $seller->validate();
+
+  if(empty($errors)){
+    $seller->saving();
+  }
 }
 addTemplate('header');
 ?>
@@ -25,7 +44,7 @@ addTemplate('header');
       </div>
     <?php endif; ?>
 
-    <form class="formulario" method="POST" action="/admin/sellers/update.php">
+    <form class="formulario" method="POST">
     <?php include '../../includes/templates/form_sellers.php'; ?>
     <input type="submit" value="Save" class="btn btn-green">
     </form>
